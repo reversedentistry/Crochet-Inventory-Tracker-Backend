@@ -11,6 +11,8 @@ public interface YarnRepository extends JpaRepository<Yarn, Integer> {
     List<Yarn> findAllByColor(String color);
     List<Yarn> findAllByColorAndUsedUpFalse(String color);
     List<Yarn> findAllByMaterial(String material);
+    List<Yarn> findAllByMaterialAndUsedUpFalse(String material);
     List<Yarn> findAllByUsedUpFalse();
     int countByColor(String color);
+    int countByColorAndUsedUpFalse(String color);
 }

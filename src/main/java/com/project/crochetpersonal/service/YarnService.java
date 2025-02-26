@@ -42,4 +42,26 @@ public class YarnService {
     public List<Yarn> findAllYarnNotUsedUp() {
         return yarnRepo.findAllByUsedUpFalse();
     }
+
+    public List<Yarn> findAllByColor(String color) {
+        return yarnRepo.findAllByColorAndUsedUpFalse(color);
+    }
+
+    public List<Yarn> findAllByMaterial(String material) {
+        return yarnRepo.findAllByMaterialAndUsedUpFalse(material);
+    }
+
+    public double totalSpent() {
+        List<Yarn> allYarn = yarnRepo.findAll();
+        double total = 0;
+
+        for (Yarn yarn : allYarn){
+            total += yarn.getCost();
+        }
+        return total;
+    }
+
+    public int availableYarnByColor(String color) {
+        return yarnRepo.countByColorAndUsedUpFalse(color);
+    }
 }
