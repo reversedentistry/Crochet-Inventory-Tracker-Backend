@@ -30,7 +30,7 @@ public class YarnController {
         return yarnService.findAll();
     }
 
-    @GetMapping
+    @GetMapping("/yarn/total")
     public double getTotalSpent() {
         return yarnService.totalSpent();
     }
