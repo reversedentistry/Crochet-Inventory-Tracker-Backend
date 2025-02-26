@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin("*")
+@RequestMapping("/yarn")
 @RestController
 public class YarnController {
     @Autowired
@@ -20,27 +22,27 @@ public class YarnController {
         return yarnService.addNewYarn(yarn);
     }
 
-    @GetMapping("/yarn/unused")
+    @GetMapping("/unused")
     public List<Yarn> getAllUnfinishedYarn() {
         return yarnService.findAllYarnNotUsedUp();
     }
 
-    @GetMapping("/yarn/all")
+    @GetMapping("/all")
     public List<Yarn> getAllYarn() {
         return yarnService.findAll();
     }
 
-    @GetMapping("/yarn/total")
+    @GetMapping("/totalcost")
     public double getTotalSpent() {
         return yarnService.totalSpent();
     }
 
-    @GetMapping("/yarn/unused/{color}")
+    @GetMapping("/unused/colors/{color}")
     public List<Yarn> getAllUnusedByColor(@PathVariable String color) {
         return yarnService.findAllByColor(color);
     }
 
-    @GetMapping("/yarn/unused/{material}")
+    @GetMapping("/unused/materials/{material}")
     public List<Yarn> getAllUnusedByMaterial(@PathVariable String material) {
         return yarnService.findAllByMaterial(material);
     }

@@ -12,8 +12,36 @@ public class HookService {
     @Autowired
     HookRepository hookRepo;
 
+    public Hook addNewHook(Hook hook) {
+        return hookRepo.save(hook);
+    }
+
+    public Hook editHook(int hookId, Hook hook) {
+        if (hookRepo.findById(hookId).isPresent()) {
+            hook.setHookId(hookId);
+            return hookRepo.save(hook);
+        }
+
+        return null;
+    }
+
     public long totalHookCount() {
         return hookRepo.count();
+    }
+
+    public double totalSpent() {
+        List<Hook> allHooks = hookRepo.findAll();
+        double total = 0;
+
+        for (Hook hook : allHooks) {
+            total += hook.getCost();
+        }
+
+        return total;
+    }
+
+    public List<Hook> findAllHooks() {
+        return hookRepo.findAll();
     }
 
     public List<Hook> findAllHooksBySize(double size) {
