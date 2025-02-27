@@ -25,6 +25,14 @@ public class HookService {
         return null;
     }
 
+    public boolean deleteHook(int hookId) {
+        if (hookRepo.findById(hookId).isPresent()) {
+            hookRepo.deleteById(hookId);
+            return true;
+        }
+        return false;
+    }
+
     public long totalHookCount() {
         return hookRepo.count();
     }

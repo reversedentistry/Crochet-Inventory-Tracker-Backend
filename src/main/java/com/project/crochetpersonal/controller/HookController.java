@@ -1,7 +1,6 @@
 package com.project.crochetpersonal.controller;
 
 import com.project.crochetpersonal.model.Hook;
-import com.project.crochetpersonal.model.Yarn;
 import com.project.crochetpersonal.service.HookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +26,13 @@ public class HookController {
         return hookService.editHook(hookId, hook) != null
                 ? ResponseEntity.status(200).body(hook)
                 : ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    @DeleteMapping("/{hookId}")
+    public ResponseEntity<String> deleteHook(@PathVariable int hookId) {
+        return hookService.deleteHook(hookId)
+                ? ResponseEntity.status(200).body("Hook successfully deleted")
+                : ResponseEntity.status(400).body("Error in deletion");
     }
 
     @GetMapping("/all")
@@ -63,6 +69,4 @@ public class HookController {
     public List<Hook> getAllTunisian() {
         return hookService.findAllTunisian();
     }
-
-
 }
